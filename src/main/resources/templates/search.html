@@ -1,44 +1,63 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-</head>
-<body>
+    <head th:replace="fragments :: head"></head>
 
-<div th:replace="fragments :: page-header"></div>
+    <body>
 
-<div class="container body-content">
+        <div th:replace="fragments :: page-header"></div>
 
-    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
-    <form th:action="@{/search/results}" method = "post">
-        <h2>Search by:</h2>
+        <div class="container body-content">
 
-        <p>
-            <span th:each="column : ${columns}">
-                <input
-                        type="radio"
-                        name="searchType"
-                        th:id="${column.key}"
-                        th:value="${column.key}"
-                        th:checked="${column.key == 'all'}"/>
-                <label th:for="${column.key}" th:text="${column.value}"></label>
-            </span>
+            <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
-        </p>
+                <form th:action="@{/search/results}" method = "post">
+                    <h2>Search by:</h2>
 
-        <p>
-            <label for="searchTerm">Keyword:</label>
-            <input type="text" name="searchTerm" id="searchTerm" />
-        </p>
+                    <p>
+                        <span th:each="column : ${columns}">
+                            <input
+                                    type="radio"
+                                    name="searchType"
+                                    th:id="${column.key}"
+                                    th:value="${column.key}"
+                                    th:checked="${column.key == 'all'}"/>
 
-        <input type="submit" value="Search" />
-    </form>
+                                    <label th:for="${column.key}" th:text="${column.value}"></label>
+                        </span>
+
+                    </p>
+
+                    <p>
+                        <label for="searchTerm">Keyword:</label>
+                        <input type="text" name="searchTerm" id="searchTerm" />
+                    </p>
+
+                        <input type="submit" value="Search" />
+
+                </form>
 
     <hr />
 
     <!-- TODO #4 - Loop over the search results to display all job fields. -->
+    <!--table class="job-listing">
+        <
+        <th:block th:each="job : ${jobs}">
+            <tr>
+                <td>
+                    <p th:text="${'ID: ' + job.id}">ID</p>
+                    <p th:text="${'Name: ' + job.name}">Name</p>
+                    <p th:text="${'Employer: ' + job.employer}">Employer</p>
+                    <p th:text="${'Location: ' + job.location}">Location</p>
+                    <p th:text="${'Position Type: ' + job.positionType}">Position Type</p>
+                    <p th:text="${'Core Competency: ' + job.coreCompetency}">Skills</p>
+                </td>
+            </tr>
+        </th:block>
 
-</div>
+    </table-->
 
-</body>
+        </div>
+
+    </body>
 </html>
